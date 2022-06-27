@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WorkflowProcess Version="12.2.0.0.1" DBVersion="21.0.0.0.0" Schema="" xmlns="http://xmlns.oracle.com/odmr11">
+    <Nodes>
+        <DataSource Id="10001" Name="NAPRAWA" Status="Complete">
+            <Icon XCOORD="125" YCOORD="135"></Icon>
+            <Messages/>
+            <Parallelism Enable="false">
+                <SystemDetermined/>
+            </Parallelism>
+            <CacheSettings UseFullData="false" GenerateCache="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10001" as (select "NAPRAWA"."PODATEK", 
+"NAPRAWA"."PODNOSNIK_ID", 
+"NAPRAWA"."SERWIS_OGUMIENIA", 
+"NAPRAWA"."NAPRAWA_SKRZYNI", 
+"NAPRAWA"."PRACOWNIK_ID", 
+"NAPRAWA"."SERWIS_KAROSERII", 
+"NAPRAWA"."WYMIANA_PLYNOW", 
+"NAPRAWA"."KLIENT_ID", 
+"NAPRAWA"."WARSZTAT_ID", 
+"NAPRAWA"."DATA_NAPRAWY", 
+"NAPRAWA"."NAPRAWA_ID", 
+"NAPRAWA"."HALA_ID", 
+"NAPRAWA"."NARZEDZIA_ID", 
+"NAPRAWA"."CENA_NAPRAWY", 
+"NAPRAWA"."POJAZD_ID", 
+"NAPRAWA"."AWARIA_ID", 
+"NAPRAWA"."NAPRAWA_ZAWIESZENIA", 
+"NAPRAWA"."CZESCI_ID", 
+"NAPRAWA"."NAPRAWA_SILNIKA", 
+"NAPRAWA"."SUKCES", 
+"NAPRAWA"."TRUDNOSC_NAPRAWY", 
+"NAPRAWA"."FAKTURA_ID", 
+"NAPRAWA"."PLEC" 
+from "EKSPLORACJA"."NAPRAWA"  )</SQLExpression>
+            <Attributes>
+                <Attribute Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                <Attribute Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+            </Attributes>
+            <SourceTable Schema="" Name="NAPRAWA" Synonym="false"/>
+            <JSONColumns/>
+            <DataGuideSettings Generate="true" UseFullData="false" UseFullDoc="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <NumberOfValues>10000</NumberOfValues>
+            </DataGuideSettings>
+        </DataSource>
+        <ClassificationBuild MaxNumPartitions="1000" ODMS_SAMPLING="false" Id="10008" Name="Class Build" Status="Complete">
+            <Icon XCOORD="375" YCOORD="132"></Icon>
+            <Messages/>
+            <Parallelism Enable="false">
+                <SystemDetermined/>
+            </Parallelism>
+            <BuildDataSource SourceId="10001"/>
+            <CaseAttributes>
+                <Attribute Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+            </CaseAttributes>
+            <MiningAttributes AutoSpec="Yes">
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+            </MiningAttributes>
+            <Stoplists>
+                <Stoplist Id="1" Name="Default" Type="Basic" Language="ENGLISH" DBName="">
+                    <StopTokens>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>a</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>all</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>almost</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>also</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>although</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>an</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>and</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>any</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>are</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>as</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>at</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>be</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>because</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>been</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>both</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>but</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>by</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>can</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>could</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>d</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>did</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>do</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>does</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>either</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>for</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>from</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>had</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>has</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>have</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>having</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>he</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>her</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>here</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>hers</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>him</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>his</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>how</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>however</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>i</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>if</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>in</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>into</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>is</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>it</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>its</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>just</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>ll</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>me</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>might</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>Mr</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>Mrs</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>Ms</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>my</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>no</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>non</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>nor</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>not</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>of</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>on</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>one</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>only</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>onto</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>or</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>our</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>ours</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>s</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>shall</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>she</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>should</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>since</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>so</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>some</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>still</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>such</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>t</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>than</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>that</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>the</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>their</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>them</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>then</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>there</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>therefore</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>these</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>they</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>this</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>those</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>though</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>through</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>thus</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>to</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>too</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>until</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>ve</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>very</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>was</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>we</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>were</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>what</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>when</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>where</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>whether</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>which</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>while</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>who</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>whose</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>why</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>will</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>with</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>would</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>yet</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>you</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>your</Item>
+                        </Token>
+                        <Token Type="Word" Language="ENGLISH">
+                            <Item>yours</Item>
+                        </Token>
+                    </StopTokens>
+                </Stoplist>
+            </Stoplists>
+            <TextSettings TransformType="Token" CategoricalCutOffValue="200">
+                <Token>
+                    <Token MaxNumberPerDoc="50" MaxNumberAllDocs="3000" MinNumberAllDocs="1" Frequency="IDF" StoplistId="1" Policy="">
+                        <Lexer Name="" Type="Basic">
+                            <Settings/>
+                        </Lexer>
+                        <Languages>
+                            <Language Name="ENGLISH" Type="SingleByte"/>
+                        </Languages>
+                    </Token>
+                </Token>
+                <Theme Type="Single">
+                    <Token MaxNumberPerDoc="50" MaxNumberAllDocs="3000" Frequency="IDF" StoplistId="1" Policy="">
+                        <Lexer Type="Basic">
+                            <Settings>
+                                <Attribute Name="index_themes" ValueString="YES" Type="String"/>
+                                <Attribute Name="theme_language" ValueString="ENGLISH" Type="String"/>
+                            </Settings>
+                        </Lexer>
+                        <Languages>
+                            <Language Name="ENGLISH" Type="SingleByte"/>
+                        </Languages>
+                    </Token>
+                </Theme>
+                <Synonym>
+                    <Token MaxNumberPerDoc="50" MaxNumberAllDocs="3000" Frequency="IDF" StoplistId="1" Policy="">
+                        <Lexer Name="" Type="Basic">
+                            <Settings/>
+                        </Lexer>
+                        <Languages>
+                            <Language Name="ENGLISH" Type="SingleByte"/>
+                        </Languages>
+                    </Token>
+                </Synonym>
+            </TextSettings>
+            <TextAttributes/>
+            <HeuristicSummaryResult StatisticTable="ODMR$21_59_53_158000TKGPWRT">
+                <Attribute Name="DATA_NAPRAWY">
+                    <Reason Type="INPUT_NONE"/>
+                </Attribute>
+                <Attribute Name="NAPRAWA_ID">
+                    <Reason Type="INPUT_NONE"/>
+                </Attribute>
+            </HeuristicSummaryResult>
+            <TestDataSource>
+                <SplitData TestPercent="50.0" DataFormat="Table"/>
+            </TestDataSource>
+            <TargetAttribute Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+            <Models>
+                <NaiveBayesModel Id="10004" Name="CLAS_NB_1_3" Status="Complete" CreationDate="2022-02-11T21:59:55" Annotation="" UseForOutput="true">
+                    <InputMiningData DataUsage="AUTO" MiningUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                        </MiningAttributes>
+                        <HeuristicResult StatisticTable="ODMR$21_59_53_158000TKGPWRT"/>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <NaiveBayesAlgo>
+                        <NABS_PAIRWISE_THRESHOLD>0.0</NABS_PAIRWISE_THRESHOLD>
+                        <NABS_SINGLETON_THRESHOLD>0.0</NABS_SINGLETON_THRESHOLD>
+                    </NaiveBayesAlgo>
+                </NaiveBayesModel>
+                <DecisionTreeModel Id="10005" Name="CLAS_DT_1_3" Status="Complete" CreationDate="2022-02-11T21:59:55" Annotation="" UseForOutput="true">
+                    <InputMiningData DataUsage="AUTO" MiningUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                        </MiningAttributes>
+                        <HeuristicResult StatisticTable="ODMR$21_59_53_158000TKGPWRT"/>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <DecisionTreeAlgo>
+                        <TREE_IMPURITY_METRIC>TREE_IMPURITY_GINI</TREE_IMPURITY_METRIC>
+                        <TREE_TERM_MAX_DEPTH>7</TREE_TERM_MAX_DEPTH>
+                        <TREE_TERM_MINPCT_NODE>0.05</TREE_TERM_MINPCT_NODE>
+                        <TREE_TERM_MINPCT_SPLIT>0.1</TREE_TERM_MINPCT_SPLIT>
+                        <TREE_TERM_MINREC_NODE>10</TREE_TERM_MINREC_NODE>
+                        <TREE_TERM_MINREC_SPLIT>20</TREE_TERM_MINREC_SPLIT>
+                    </DecisionTreeAlgo>
+                </DecisionTreeModel>
+                <CSupportVectorMachineModel Id="10006" Name="CLAS_SVM_1_3" Status="Complete" CreationDate="2022-02-11T21:59:55" Annotation="" UseForOutput="true">
+                    <InputMiningData DataUsage="AUTO" MiningUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                        </MiningAttributes>
+                        <HeuristicResult StatisticTable="ODMR$21_59_53_158000TKGPWRT"/>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <CSupportVectorMachineAlgo>
+                        <SVMS_ACTIVE_LEARNING>SVMS_AL_ENABLE</SVMS_ACTIVE_LEARNING>
+                        <SVMS_CONV_TOLERANCE>0.001</SVMS_CONV_TOLERANCE>
+                    </CSupportVectorMachineAlgo>
+                </CSupportVectorMachineModel>
+                <CGeneralizedLinearModel Id="10007" Name="CLAS_GLM_1_3" Status="Complete" CreationDate="2022-02-11T21:59:55" Annotation="" UseForOutput="true">
+                    <InputMiningData DataUsage="AUTO" MiningUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="No" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                        </MiningAttributes>
+                        <HeuristicResult StatisticTable="ODMR$21_59_53_158000TKGPWRT"/>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <CGeneralizedLinearAlgo>
+                        <GLMS_CONF_LEVEL>0.95</GLMS_CONF_LEVEL>
+                        <GLMS_FTR_SELECTION>GLMS_FTR_SELECTION_DISABLE</GLMS_FTR_SELECTION>
+                        <GLMS_SPARSE_SOLVER>GLMS_SPARSE_SOLVER_DISABLE</GLMS_SPARSE_SOLVER>
+                    </CGeneralizedLinearAlgo>
+                </CGeneralizedLinearModel>
+            </Models>
+            <TestSettings>
+                <TopNTargets Value="5"/>
+            </TestSettings>
+            <Results genAccuracyMetrics="true" genConfusionMatrix="true" genROC="true" genLift="true" genTuning="false">
+                <ClassificationResult ModelId="10004" Status="Complete" Name="CLAS_NB_1_3" CreationDate="2022-02-11T22:00:00">
+                    <TestMetrics Name="ODMR$21_59_59_431000ALEWVUG" CreationDate="2022-02-11T21:59:59"/>
+                    <ConfusionMatrix Name="ODMR$21_59_58_703000UAZYVTV" CreationDate="2022-02-11T21:59:59"/>
+                    <Lifts>
+                        <Lift TargetValue="M" Name="ODMR$21_59_59_463000MSXUZGO" CreationDate="2022-02-11T21:59:59"/>
+                        <Lift TargetValue="K" Name="ODMR$21_59_59_574000WMMQPHN" CreationDate="2022-02-11T21:59:59"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="M" Name="ODMR$21_59_59_692000XAZFJWE" CreationDate="2022-02-11T21:59:59"/>
+                        <ROC TargetValue="K" Name="ODMR$21_59_59_938000MEDSASE" CreationDate="2022-02-11T22:00:00"/>
+                        <AreaUnderCurve Area="0.5" TargetValue="M"/>
+                        <AreaUnderCurve Area="0.5" TargetValue="K"/>
+                    </ROCs>
+                </ClassificationResult>
+                <ClassificationResult ModelId="10007" Status="Complete" Name="CLAS_GLM_1_3" CreationDate="2022-02-11T22:00:01">
+                    <TestMetrics Name="ODMR$21_59_59_666000VHZKRAY" CreationDate="2022-02-11T21:59:59"/>
+                    <ConfusionMatrix Name="ODMR$21_59_59_529000CDIZIED" CreationDate="2022-02-11T21:59:59"/>
+                    <Lifts>
+                        <Lift TargetValue="M" Name="ODMR$21_59_59_695000DZMRSGN" CreationDate="2022-02-11T21:59:59"/>
+                        <Lift TargetValue="K" Name="ODMR$21_59_59_806000XVVIKLI" CreationDate="2022-02-11T21:59:59"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="M" Name="ODMR$21_59_59_985000RSNTGCD" CreationDate="2022-02-11T22:00:00"/>
+                        <ROC TargetValue="K" Name="ODMR$22_00_00_880000LTEIVLA" CreationDate="2022-02-11T22:00:01"/>
+                        <AreaUnderCurve Area="0.49960196018218994" TargetValue="M"/>
+                        <AreaUnderCurve Area="0.49960216879844666" TargetValue="K"/>
+                    </ROCs>
+                </ClassificationResult>
+                <ClassificationResult ModelId="10005" Status="Complete" Name="CLAS_DT_1_3" CreationDate="2022-02-11T22:00:02">
+                    <TestMetrics Name="ODMR$22_00_00_896000WSBTNYL" CreationDate="2022-02-11T22:00:00"/>
+                    <ConfusionMatrix Name="ODMR$22_00_00_748000BSWODXG" CreationDate="2022-02-11T22:00:00"/>
+                    <Lifts>
+                        <Lift TargetValue="M" Name="ODMR$22_00_01_994000XLUQIBQ" CreationDate="2022-02-11T22:00:02"/>
+                        <Lift TargetValue="K" Name="ODMR$22_00_02_093000KMKWCKC" CreationDate="2022-02-11T22:00:02"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="M" Name="ODMR$22_00_02_229000IUUDHAN" CreationDate="2022-02-11T22:00:02"/>
+                        <ROC TargetValue="K" Name="ODMR$22_00_02_459000KVPUAAS" CreationDate="2022-02-11T22:00:02"/>
+                        <AreaUnderCurve Area="0.4988802671432495" TargetValue="M"/>
+                        <AreaUnderCurve Area="0.4988802671432495" TargetValue="K"/>
+                    </ROCs>
+                </ClassificationResult>
+                <ClassificationResult ModelId="10006" Status="Complete" Name="CLAS_SVM_1_3" CreationDate="2022-02-11T22:00:03">
+                    <TestMetrics Name="ODMR$22_00_02_221000JVMYMKK" CreationDate="2022-02-11T22:00:02"/>
+                    <ConfusionMatrix Name="ODMR$22_00_02_046000VRIFWOK" CreationDate="2022-02-11T22:00:02"/>
+                    <Lifts>
+                        <Lift TargetValue="M" Name="ODMR$22_00_02_252000YXVILFJ" CreationDate="2022-02-11T22:00:02"/>
+                        <Lift TargetValue="K" Name="ODMR$22_00_02_392000GPTJUAK" CreationDate="2022-02-11T22:00:02"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="M" Name="ODMR$22_00_02_536000PNZAOPU" CreationDate="2022-02-11T22:00:03"/>
+                        <ROC TargetValue="K" Name="ODMR$22_00_03_089000XPDPGDU" CreationDate="2022-02-11T22:00:03"/>
+                        <AreaUnderCurve Area="0.49991971254348755" TargetValue="M"/>
+                        <AreaUnderCurve Area="0.49991992115974426" TargetValue="K"/>
+                    </ROCs>
+                </ClassificationResult>
+            </Results>
+        </ClassificationBuild>
+    </Nodes>
+    <Links>
+        <Link Id="10009" From="10001" To="10008" Name="Link" Label="From &quot;NAPRAWA&quot; to &quot;Class Build&quot;">
+            <ConnectorGraphicsInfo>
+                <Coordinates XCoordinate="0.0" YCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+    </Links>
+</WorkflowProcess>

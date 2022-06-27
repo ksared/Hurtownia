@@ -1,0 +1,52 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Fri Feb 11 23:18:02 2022
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   naprawa.ctl
+Data File:      naprawa4.csv
+  Bad File:     naprawa4.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table NAPRAWA, loaded from every logical record.
+Insert option in effect for this table: INSERT
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+NAPRAWA_ID                          FIRST     *   ,  O(") CHARACTER            
+KLIENT_ID                            NEXT     *   ,  O(") CHARACTER            
+FAKTURA_ID                           NEXT     *   ,  O(") CHARACTER            
+POJAZD_ID                            NEXT     *   ,  O(") CHARACTER            
+HALA_ID                              NEXT     *   ,  O(") CHARACTER            
+WARSZTAT_ID                          NEXT     *   ,  O(") CHARACTER            
+AWARIA_ID                            NEXT     *   ,  O(") CHARACTER            
+PODNOSNIK_ID                         NEXT     *   ,  O(") CHARACTER            
+CZESCI_ID                            NEXT     *   ,  O(") CHARACTER            
+NARZEDZIA_ID                         NEXT     *   ,  O(") CHARACTER            
+PRACOWNIK_ID                         NEXT     *   ,  O(") CHARACTER            
+DATA_NAPRAWY                         NEXT     *   ,  O(") DATE DD.MM.YYYY      
+CENA_NAPRAWY                         NEXT     *   ,  O(") CHARACTER            
+PODATEK                              NEXT     *   ,  O(") CHARACTER            
+SUKCES                               NEXT     *   ,  O(") CHARACTER            
+WYMIANA_PLYNOW                       NEXT     *   ,  O(") CHARACTER            
+NAPRAWA_ZAWIESZENIA                  NEXT     *   ,  O(") CHARACTER            
+NAPRAWA_SILNIKA                      NEXT     *   ,  O(") CHARACTER            
+NAPRAWA_SKRZYNI                      NEXT     *   ,  O(") CHARACTER            
+SERWIS_OGUMIENIA                     NEXT     *   ,  O(") CHARACTER            
+SERWIS_KAROSERII                     NEXT     *   ,  O(") CHARACTER            
+PLEC                                 NEXT     *   ,  O(") CHARACTER            
+TRUDNOSC_NAPRAWY                     NEXT     *   ,  O(") CHARACTER            
+
+value used for ROWS parameter changed from 250 to 176
+SQL*Loader-601: For INSERT option, table must be empty.  Error on table NAPRAWA

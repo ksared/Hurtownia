@@ -1,0 +1,60 @@
+AWARIA
+
+=WYBIERZ(LOS.ZAKR(1;8);"halasujacy ";"piszczacy ";"porysowany ";"brak ";"uszkodzony ";"zardzewialy ";"obluzowany ";"cieknacy ") & WYBIERZ(LOS.ZAKR(1;14);"silnik";"skrzynia";"zawieszenie";"karoseria";"drzwi";"podwozie";"opona";"tarcze hamulcowe";"klocki hamulcowe";"zaciski";"alternator";"chłodnica";"klapa";"siłowniki")
+
+PODNOSNIK
+
+=LOS.ZAKR(2;40)*1000
+
+NARZEDZIA
+
+=WYBIERZ(LOS.ZAKR(1;10);"klucz";"mlotek";"srubokret";"miernik";"suwmiarka";"komputer";"napelniacz";"wyważnik";"latarka";"pistolet")
+
+CZESCI
+
+=WYBIERZ(LOS.ZAKR(1;17);"klocki";"tarcze";"silnik";"skrzynia";"sprzeglo";"chlodnica";"olej";"plyn hamulcowy";"plyn chlodniczy";"wahacz";"drazek";"drzwi";"klapa";"wydech";"rozrząd";"alternator";"elektronika";)
+=LOS.ZAKR(2;580)*10
+=WYBIERZ(LOS.ZAKR(1;3);"dostepny";"na zamowienie";"niedostepny")
+
+PRACOWNIK
+
+=WYBIERZ(LOS.ZAKR(1;17);"Adam";"Adrian";"Bogdan";"Michal";"Tomek";"Marcin";"Krzysztof";"Sylwester";"Jakub";"Rafał";"Aleksander";"Cezary";"Damian";"Sebastian";"Wojciech";"Piotr";"Szymon";)
+=WYBIERZ(LOS.ZAKR(1;17);"Nowak";"Abacki";"Kowalski";"Wójcik";"Kowalczyk";"Wiśniewski";"Kamiński";"Zieliński";"Szymański";"Woźniak";"Czerwiński";"Danielak";"Górski";"Jabłonowski";"Brodowicz";"Boguszewski";"Wolny";)
+=LOS.ZAKR(6;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9)
+=LOS.ZAKR(1;28) & "." & LOS.ZAKR(1;12) & "." & "19" & LOS.ZAKR(60; 99)
+=LOS.ZAKR(1500; 15600)
+=WYBIERZ(LOS.ZAKR(1;5);"mechanik";"elektronik";"brygadzista";"kierownik";"praktykant";)
+
+KLIENCI
+=LOS.ZAKR(1;90) & "-" & LOS.ZAKR(0;9) & LOS.ZAKR(0;9) & LOS.ZAKR(0;9)
+
+
+
+SAMOCHOD
+
+=WYBIERZ(LOS.ZAKR(1;20);"audi";"bmw";"alfa romeo";"mercedes";"volkswagen";"citroen";"renault";"peugeot";"jeep";"fiat";"lancia";"opel";"ford";"cadillac";"polonez";"volvo";"saab";"honda";"mazda";"hyundai")
+=LOS.ZAKR(1;300) & WYBIERZ(LOS.ZAKR(1;8);"a";"b";"c";"d";"e";"f";"g";"h")
+
+WARSZTAT
+
+=WYBIERZ(LOS.ZAKR(1;9);"iwe";"maks";"wer";"war";"mek";"mech";"auto";"naprawa";"fix") & WYBIERZ(LOS.ZAKR(1;8);"ex";"net";"mat";"war";"mek";"mech";"auto";"fix")
+=LOS.ZAKR(5;70)*100
+
+HALA
+
+=WYBIERZ(LOS.ZAKR(1;5);"spawalnicza";"mechaniczna";"lakiernia";"uniwersalna";"podstawowa")
+
+NAPRAWA
+MAX ID FOREIGN KEY
+KLIENT 8061
+FAKTURA 33472
+POJAZD 25000
+HALA 1296
+WARSZTAT 128
+AWARIA 1000
+PODNOSNIK 50
+CZESCI 3146
+NARZEDZIA 2000
+PRACOWNIK 348
+
+

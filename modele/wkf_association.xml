@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WorkflowProcess Version="12.2.0.0.1" DBVersion="21.0.0.0.0" Schema="" xmlns="http://xmlns.oracle.com/odmr11">
+    <Nodes>
+        <DataSource Id="10001" Name="NAPRAWA" Status="Complete">
+            <Icon XCOORD="165" YCOORD="96"></Icon>
+            <Messages/>
+            <Parallelism Enable="false">
+                <SystemDetermined/>
+            </Parallelism>
+            <CacheSettings UseFullData="false" GenerateCache="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10001" as (select "NAPRAWA"."PODATEK", 
+"NAPRAWA"."PODNOSNIK_ID", 
+"NAPRAWA"."SERWIS_OGUMIENIA", 
+"NAPRAWA"."NAPRAWA_SKRZYNI", 
+"NAPRAWA"."PRACOWNIK_ID", 
+"NAPRAWA"."SERWIS_KAROSERII", 
+"NAPRAWA"."WYMIANA_PLYNOW", 
+"NAPRAWA"."KLIENT_ID", 
+"NAPRAWA"."WARSZTAT_ID", 
+"NAPRAWA"."DATA_NAPRAWY", 
+"NAPRAWA"."NAPRAWA_ID", 
+"NAPRAWA"."HALA_ID", 
+"NAPRAWA"."NARZEDZIA_ID", 
+"NAPRAWA"."CENA_NAPRAWY", 
+"NAPRAWA"."POJAZD_ID", 
+"NAPRAWA"."AWARIA_ID", 
+"NAPRAWA"."NAPRAWA_ZAWIESZENIA", 
+"NAPRAWA"."CZESCI_ID", 
+"NAPRAWA"."NAPRAWA_SILNIKA", 
+"NAPRAWA"."SUKCES", 
+"NAPRAWA"."TRUDNOSC_NAPRAWY", 
+"NAPRAWA"."FAKTURA_ID", 
+"NAPRAWA"."PLEC" 
+from "EKSPLORACJA"."NAPRAWA"  )</SQLExpression>
+            <Attributes>
+                <Attribute Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                <Attribute Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                <Attribute Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+            </Attributes>
+            <SourceTable Schema="" Name="NAPRAWA" Synonym="false"/>
+            <JSONColumns/>
+            <DataGuideSettings Generate="true" UseFullData="false" UseFullDoc="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <NumberOfValues>10000</NumberOfValues>
+            </DataGuideSettings>
+        </DataSource>
+        <DataSource Id="10016" Name="AWARIA" Status="Complete">
+            <Icon XCOORD="166" YCOORD="243"></Icon>
+            <Messages/>
+            <Parallelism Enable="false">
+                <SystemDetermined/>
+            </Parallelism>
+            <CacheSettings UseFullData="false" GenerateCache="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10016" as (select "AWARIA"."AWARIA_ID", 
+"AWARIA"."RODZAJ_AWARII" 
+from "EKSPLORACJA"."AWARIA"  )</SQLExpression>
+            <Attributes>
+                <Attribute Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                <Attribute Name="RODZAJ_AWARII" DataType="VARCHAR2" Status="Valid"/>
+            </Attributes>
+            <SourceTable Schema="" Name="AWARIA" Synonym="false"/>
+            <JSONColumns/>
+            <DataGuideSettings Generate="true" UseFullData="false" UseFullDoc="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <NumberOfValues>10000</NumberOfValues>
+            </DataGuideSettings>
+        </DataSource>
+        <Join UseCartesian="false" Id="10012" Name="Join" Status="Complete">
+            <Icon XCOORD="342" YCOORD="162"></Icon>
+            <Messages/>
+            <Parallelism Enable="false">
+                <SystemDetermined/>
+            </Parallelism>
+            <CacheSettings UseFullData="false" GenerateCache="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10012" as (SELECT 
+"NAPRAWA"."PODATEK"
+, "NAPRAWA"."PODNOSNIK_ID"
+, "NAPRAWA"."SERWIS_OGUMIENIA"
+, "NAPRAWA"."NAPRAWA_SKRZYNI"
+, "NAPRAWA"."PRACOWNIK_ID"
+, "NAPRAWA"."SERWIS_KAROSERII"
+, "NAPRAWA"."WYMIANA_PLYNOW"
+, "NAPRAWA"."KLIENT_ID"
+, "NAPRAWA"."WARSZTAT_ID"
+, "NAPRAWA"."DATA_NAPRAWY"
+, "NAPRAWA"."NAPRAWA_ID"
+, "NAPRAWA"."HALA_ID"
+, "NAPRAWA"."NARZEDZIA_ID"
+, "NAPRAWA"."CENA_NAPRAWY"
+, "NAPRAWA"."POJAZD_ID"
+, "NAPRAWA"."AWARIA_ID"
+, "NAPRAWA"."NAPRAWA_ZAWIESZENIA"
+, "NAPRAWA"."CZESCI_ID"
+, "NAPRAWA"."NAPRAWA_SILNIKA"
+, "NAPRAWA"."SUKCES"
+, "NAPRAWA"."TRUDNOSC_NAPRAWY"
+, "NAPRAWA"."FAKTURA_ID"
+, "NAPRAWA"."PLEC"
+, "AWARIA"."AWARIA_ID" "AWARIA_ID1"
+, "AWARIA"."RODZAJ_AWARII"
+
+FROM
+{INPUT_SOURCE:10001} "NAPRAWA"
+INNER JOIN {INPUT_SOURCE:10016} "AWARIA"
+ON "NAPRAWA"."AWARIA_ID" = "AWARIA"."AWARIA_ID"
+
+ )</SQLExpression>
+            <KeyColumns AutoSpec="No">
+                <JoinColumn Type="Inner">
+                    <LeftColumn NodeId="10001" NodeName="NAPRAWA" Key="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                    <RightColumn NodeId="10016" NodeName="AWARIA" Key="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                </JoinColumn>
+            </KeyColumns>
+            <OutputColumns AutoSpec="Yes">
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                <RefDBColumn NodeId="10001" NodeName="NAPRAWA" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                <RefDBColumn NodeId="10016" NodeName="AWARIA" Name="AWARIA_ID" DataType="NUMBER" Status="Valid" Alias="AWARIA_ID1"/>
+                <RefDBColumn NodeId="10016" NodeName="AWARIA" Name="RODZAJ_AWARII" DataType="VARCHAR2" Status="Valid"/>
+            </OutputColumns>
+        </Join>
+        <AssociationBuild MaxDistinctItemValue="10" ASSO_GENERATE_PREPROCESSED_TABLE="false" ASSO_PREPROCESSED_TABLE_NAME="NONE" MaxNumPartitions="1000" ODMS_SAMPLING="false" Id="10003" Name="Assoc Build" Status="Complete">
+            <Icon XCOORD="538" YCOORD="155"></Icon>
+            <Messages/>
+            <Parallelism Enable="false">
+                <SystemDetermined/>
+            </Parallelism>
+            <BuildDataSource SourceId="10012"/>
+            <CaseAttributes>
+                <Attribute Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+            </CaseAttributes>
+            <MiningAttributes AutoSpec="Yes">
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID1" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="RODZAJ_AWARII" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+            </MiningAttributes>
+            <ItemID Name="RODZAJ_AWARII" DataType="VARCHAR2" Status="Valid"/>
+            <Models>
+                <AprioriModel Id="10002" Name="ASSOC_AP_1_2" Status="Complete" CreationDate="2022-02-11T21:23:50" Annotation="" UseForOutput="true">
+                    <InputMiningData DataUsage="MANUAL" MiningUsage="MANUAL">
+                        <MiningAttributes>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="AWARIA_ID1" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CENA_NAPRAWY" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="CZESCI_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="DATA_NAPRAWY" DataType="DATE" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="FAKTURA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="HALA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="KLIENT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NAPRAWA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SILNIKA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_SKRZYNI" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="NAPRAWA_ZAWIESZENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="NARZEDZIA_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="PLEC" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODATEK" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PODNOSNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="POJAZD_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="PRACOWNIK_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="RODZAJ_AWARII" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_KAROSERII" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SERWIS_OGUMIENIA" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="SUKCES" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="TRUDNOSC_NAPRAWY" DataType="VARCHAR2" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Numerical" Input="Yes" Name="WARSZTAT_ID" DataType="NUMBER" Status="Valid"/>
+                            <MiningAttribute AutoPrep="Yes" MiningType="Categorical" Input="Yes" Name="WYMIANA_PLYNOW" DataType="VARCHAR2" Status="Valid"/>
+                        </MiningAttributes>
+                    </InputMiningData>
+                    <AprioriAlgo ASSO_FILTERS_ACTIVE="false">
+                        <ASSO_MAX_RULE_LENGTH>4</ASSO_MAX_RULE_LENGTH>
+                        <ASSO_MIN_CONFIDENCE>0.0</ASSO_MIN_CONFIDENCE>
+                        <ASSO_MIN_SUPPORT>2.0E-4</ASSO_MIN_SUPPORT>
+                        <ASSO_MIN_REV_CONFIDENCE>0.0</ASSO_MIN_REV_CONFIDENCE>
+                        <ASSO_MIN_SUPPORT_INT>1</ASSO_MIN_SUPPORT_INT>
+                    </AprioriAlgo>
+                </AprioriModel>
+            </Models>
+        </AssociationBuild>
+    </Nodes>
+    <Links>
+        <Link Id="10013" From="10001" To="10012" Name="Link" Label="From &quot;NAPRAWA&quot; to &quot;Join&quot;">
+            <ConnectorGraphicsInfo>
+                <Coordinates XCoordinate="0.0" YCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Id="10015" From="10012" To="10003" Name="Link" Label="From &quot;Join&quot; to &quot;Assoc Build&quot;">
+            <ConnectorGraphicsInfo>
+                <Coordinates XCoordinate="0.0" YCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Id="10017" From="10016" To="10012" Name="Link" Label="From &quot;AWARIA&quot; to &quot;Join&quot;">
+            <ConnectorGraphicsInfo>
+                <Coordinates XCoordinate="0.0" YCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+    </Links>
+</WorkflowProcess>

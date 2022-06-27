@@ -1,0 +1,227 @@
+ROLLUP
+
+ile pracownik zarobił w poszczególnym roku
+
+select
+    prac.nazwisko, prac.imie, nap.rok, nap.cena
+from pracownik prac inner join(select
+    EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')) as rok,
+    pracownik_id,
+    sum(cena_naprawy) as cena
+from naprawa
+group by rollup(EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), pracownik_id)
+)nap on prac.pracownik_id = nap.pracownik_id
+order by nap.cena DESC
+
+ILE WARSZTAT DOKONAŁ NAPRAW W JAKIMŚ ROKU
+
+select war.nazwa as nazwa_warsztatu, nap.liczba_napraw, nap.rok
+from warsztat war inner join(select warsztat_id, COUNT(naprawa_id) as liczba_napraw, EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')) as rok
+from naprawa
+group by rollup(EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), warsztat_id)
+)nap on war.warsztat_id = nap.warsztat_id
+order by nap.liczba_napraw DESC
+
+
+ILE było napraw silnika w poszczególnych latach
+
+select 
+EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')) as rok,
+naprawa_silnika as naprawa_silnika,
+count(naprawa_id) as liczba
+from naprawa
+group by rollup(EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), naprawa_silnika)
+order by rok DESC
+
+
+CUBE
+
+SREDNIA CENA NAPRAWY A UŻYTE NARZEDZIA
+
+SELECT rok, narz.NAZWA_NARZEDZA AS uzyte_narzedzia, srednia_cena_naprawy
+FROM narzedzia narz
+RIGHT JOIN (
+    SELECT EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')) as rok, 
+    narzedzia_id, 
+    avg(cena_naprawy) as srednia_cena_naprawy
+    FROM naprawa
+    GROUP BY CUBE (EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), narzedzia_id)
+) nap ON nap.narzedzia_id = narz.narzedzia_id
+order by srednia_cena_naprawy
+
+
+Wymiana plynow A ZAPLACONY PODATEK w konkretnym terminie
+
+SELECT TO_DATE(data_naprawy, 'RR.MM.DD') as data, round(avg(podatek),2) as sredni_podatek, wymiana_plynow
+FROM naprawa
+    GROUP BY CUBE (TO_DATE(data_naprawy, 'RR.MM.DD'), wymiana_plynow)
+    order by sredni_podatek
+	
+	
+zależność między serwisem ogumienia, naprawą zawieszenia, a średnim podatkiem
+	
+SELECT serwis_ogumienia, round(avg(podatek),2) as sredni_podatek, naprawa_zawieszenia
+FROM naprawa
+    GROUP BY CUBE (serwis_ogumienia, naprawa_zawieszenia)
+    order by sredni_podatek
+	
+	
+GROUPING SETS
+
+wydatki poszczególnych klientów, w poszczególnych latach
+
+SELECT rok, klient.imie, klient.nazwisko, koszt_napraw
+FROM klient
+RIGHT JOIN (
+    SELECT EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')) as rok, 
+    sum(cena_naprawy) as koszt_napraw,
+    klient_id
+    FROM naprawa
+    GROUP BY GROUPING SETS (EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), klient_id)
+) nap ON nap.klient_id = klient.klient_id
+order by koszt_napraw DESC
+
+
+WYKORZYSTANIE POSZCZEGOLNYCH CZESCI w poszczególnych latach
+
+SELECT rok, nazwa_czesci, liczba_napraw
+FROM czesci
+RIGHT JOIN (
+    SELECT EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')) as rok, 
+    count(czesci_id) as liczba_napraw,
+    czesci_id
+    FROM naprawa
+    GROUP BY GROUPING SETS (EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), czesci_id)
+) nap ON nap.czesci_id = czesci.czesci_id
+order by liczba_napraw DESC
+
+
+
+zalezność między rokiem i pojazdem, a srednią ceną naprawy i podatku
+
+
+SELECT rok, p.marka, srednia_cena_naprawy, sredni_podatek
+from pojazd p
+RIGHT JOIN(
+    SELECT EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')) as rok, pojazd_id, round(avg(cena_naprawy),2) as srednia_cena_naprawy, 
+    round(avg(podatek),2) as sredni_podatek
+    FROM naprawa nap
+    GROUP BY GROUPING SETS((EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD'))), (EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), pojazd_id))
+) nap ON P.pojazd_ID = nap.pojazd_id
+order by rok;
+
+PATRYCJE
+
+zależność ceny naprawy od trudności naprawy
+
+SELECT trudnosc_naprawy, cena_naprawy, sum(cena_naprawy) over (partition by trudnosc_naprawy) as suma_cen_za_trudnosc,
+        round(100*cena_naprawy/(sum(cena_naprawy) over (partition by trudnosc_naprawy)), 5) "Udzial%"
+from naprawa
+order by cena_naprawy Desc;
+
+CENY NAPRAW, A UZYTE NARZEDZIA
+
+SELECT n.nazwa_narzedza as nazwa_narzedzia, nap.cena_naprawy, nap.suma_cen_wykorzystujac_narzedzie,nap.udzial     
+from narzedzia n
+right join (select narzedzia_id, cena_naprawy, sum(cena_naprawy) over (partition by narzedzia_id) as suma_cen_wykorzystujac_narzedzie,
+round(100*cena_naprawy/(sum(cena_naprawy) over (partition by narzedzia_id)), 5) as udzial
+from naprawa) nap on n.narzedzia_id = nap.narzedzia_id 
+order by nap.cena_naprawy Desc;
+
+
+PODATKI A RODZAJ AWARII
+
+SELECT a.rodzaj_awarii, nap.podatek, nap.suma_podatkow_dla_awarii,nap.udzial     
+from awaria a
+right join (select awaria_id, podatek, sum(podatek) over (partition by awaria_id) as suma_podatkow_dla_awarii,
+round(100*podatek/(sum(podatek) over (partition by awaria_id)), 5) as udzial
+from naprawa) nap on a.awaria_id = nap.awaria_id 
+order by nap.podatek Desc;
+
+
+OKNA RUCHOME
+
+CENY NAPRAW W ZALEZNOSCI OD DNIA I MIESIACA
+
+SELECT distinct
+    (EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD'))) AS MIESIAC, 
+    (EXTRACT(Day from TO_DATE(data_naprawy, 'RR.MM.DD'))) AS DZIEN,
+     SUM(Cena_naprawy) OVER 
+        (PARTITION BY EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD')), 
+        EXTRACT(Day from TO_DATE(data_naprawy, 'RR.MM.DD')) 
+        ORDER BY EXTRACT(Day from TO_DATE(data_naprawy, 'RR.MM.DD'))
+        RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS KWOTA_DZIENNA,
+    SUM(cena_naprawy) 
+        OVER (PARTITION BY EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD'))
+        ORDER BY EXTRACT(Day from TO_DATE(data_naprawy, 'RR.MM.DD'))
+        RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS KWOTA_MIESIECZNA
+FROM naprawa
+ORDER BY MIESIAC, DZIEN;
+
+PODATEK W ZALEZNOSCI OD MIESIACA I ROKU
+
+
+SELECT distinct
+    (EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD'))) AS ROK, 
+    (EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD'))) AS MIESIAC,
+     SUM(podatek) OVER 
+        (PARTITION BY EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD')), 
+        EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD')) 
+        ORDER BY EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD'))
+        RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS KWOTA_MIESIECZNA,
+    SUM(podatek) 
+        OVER (PARTITION BY EXTRACT(Year from TO_DATE(data_naprawy, 'RR.MM.DD'))
+        ORDER BY EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD'))
+        RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS KWOTA_ROCZNA
+FROM naprawa
+ORDER BY ROK, MIESIAC;
+
+
+trudność naprawy dla poszczegolnych samochodow i ogolnie
+
+SELECT P.marka, nap.trudnosc_naprawy,suma_dla_samochodu, suma_wszystkich
+FROM pojazd P
+JOIN (
+    SELECT DISTINCT
+        pojazd_id,
+        trudnosc_naprawy,
+        COUNT(*) OVER (PARTITION BY trudnosc_naprawy, pojazd_id ORDER BY pojazd_ID RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS suma_dla_samochodu,
+         COUNT(*) OVER (PARTITION BY trudnosc_naprawy ORDER BY pojazd_ID  RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS suma_wszystkich
+    FROM naprawa
+) nap ON nap.pojazd_ID = P.pojazd_ID ;
+
+
+RANKING
+
+Najwiecej pieniedzy w zaleznosci od trudnosci naprawy
+
+SELECT 
+    trudnosc_naprawy, 
+    SUM(cena_naprawy),
+    DENSE_RANK() OVER (ORDER BY SUM(cena_naprawy) DESC) AS RANK
+FROM naprawa
+GROUP BY trudnosc_naprawy;
+
+ilosc napraw w miesiacu
+
+SELECT 
+    EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD')) AS MIESIAC, 
+    COUNT(*) AS ILOSC,
+    DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS RANK
+FROM NAPRAWA
+GROUP BY EXTRACT(Month from TO_DATE(data_naprawy, 'RR.MM.DD'));
+
+
+RANKING WARSZTATOW
+
+SELECT W.nazwa, NAP.suma_PLN_z_napraw, nap.ranking FROM warsztat W
+JOIN
+(
+    SELECT 
+        warsztat_id, 
+        SUM(cena_naprawy) AS suma_PLN_z_napraw,
+        DENSE_RANK() OVER (ORDER BY SUM(cena_naprawy) DESC) AS ranking
+    FROM naprawa
+    GROUP BY warsztat_id
+) nap ON W.warsztat_ID = nap.warsztat_id
+order by nap.ranking;
